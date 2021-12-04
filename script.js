@@ -17,16 +17,33 @@ const food = {
   y: Math.floor(Math.random() * 15 + 1) * box,
 };
 
+// score
+const scoreArea = document.getElementById('score');
+let score = 0;
+
+console.log(canvas.width);
+const cols = canvas.width / box;
+const rows = canvas.height / box;
+
 // functions
 function createBG() {
-  context.fillStyle = 'lightgreen';
+  context.fillStyle = 'black';
   context.fillRect(0, 0, 16 * box, 16 * box);
+
+  for (let i = 0; i < 512; i++) {
+    for (let j = 0; j < 512; j++) {
+      context.strokeStyle = 'rgb(34, 27, 68)';
+      context.strokeRect(i * box, j * box, box, box);
+    }
+  }
 }
 
 function createSnake() {
   for (let i = 0; i < snake.length; i++) {
-    context.fillStyle = 'purple';
+    context.fillStyle = 'green';
     context.fillRect(snake[i].x, snake[i].y, box, box);
+    context.strokeStyle = 'rgb(34, 27, 68)';
+    context.strokeRect(snake[i].x, snake[i].y, box, box);
   }
 }
 
@@ -38,8 +55,10 @@ function update(e) {
 }
 
 function drawFood() {
-  context.fillStyle = 'red';
+  context.fillStyle = 'rgb(214, 11, 28)';
   context.fillRect(food.x, food.y, box, box);
+  context.strokeStyle = 'rgb(34, 27, 68)';
+  context.strokeRect(food.x, food.y, box, box);
 }
 
 function changeDirectionAndSize() {
@@ -61,6 +80,8 @@ function changeDirectionAndSize() {
   } else {
     food.x = Math.floor(Math.random() * 15 + 1) * box;
     food.y =  Math.floor(Math.random() * 15 + 1) * box;
+
+    score += 1;
   }
 
   let newHead = {
@@ -76,8 +97,24 @@ function killSnake() {
     if (snake[0].x === snake[i].x && snake[0].y === snake[i].y) {
       clearInterval(game);
       alert('Game Over :(');
+
+      const startAgain = confirm('Start again?');
+
+      if (startAgain) {
+        score = 0;
+        snake.length = 0;
+        snake[0] = { x: 8 * box, y: 8 * box };
+
+        food.x = Math.floor(Math.random() * 15 + 1) * box;
+        food.y =  Math.floor(Math.random() * 15 + 1) * box;
+        setInterval(startGame, 100);
+      }
     }
   }
+}
+
+function writeScore() {
+  scoreArea.innerText = `SCORE: ${score}`;
 }
 
 function startGame() {
@@ -86,6 +123,7 @@ function startGame() {
   changeDirectionAndSize();
   drawFood();
   killSnake();
+  writeScore();
 }
 
 const game = setInterval(startGame, 100);
