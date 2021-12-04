@@ -1,5 +1,5 @@
-[PT](#Joguinho da cobrinha)
-[EN](#Snake game)
+- [PT](#joguinho-da-cobrinha)
+- [EN](#snake-game)
 
 # Joguinho da cobrinha
 
