@@ -27,12 +27,12 @@ const rows = canvas.height / box;
 
 // functions
 function createBG() {
-  context.fillStyle = 'black';
+  context.fillStyle = 'rgb(92, 180, 19)';
   context.fillRect(0, 0, 16 * box, 16 * box);
 
   for (let i = 0; i < 512; i++) {
     for (let j = 0; j < 512; j++) {
-      context.strokeStyle = 'rgb(34, 27, 68)';
+      context.strokeStyle = 'rgb(64, 130, 10)';
       context.strokeRect(i * box, j * box, box, box);
     }
   }
@@ -40,9 +40,9 @@ function createBG() {
 
 function createSnake() {
   for (let i = 0; i < snake.length; i++) {
-    context.fillStyle = 'green';
+    context.fillStyle = 'rgb(6, 85, 36)'; 
     context.fillRect(snake[i].x, snake[i].y, box, box);
-    context.strokeStyle = 'rgb(34, 27, 68)';
+    context.strokeStyle = '64, 130, 10';
     context.strokeRect(snake[i].x, snake[i].y, box, box);
   }
 }
@@ -57,7 +57,7 @@ function update(e) {
 function drawFood() {
   context.fillStyle = 'rgb(214, 11, 28)';
   context.fillRect(food.x, food.y, box, box);
-  context.strokeStyle = 'rgb(34, 27, 68)';
+  context.strokeStyle = '64, 130, 10';
   context.strokeRect(food.x, food.y, box, box);
 }
 
