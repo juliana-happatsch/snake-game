@@ -102,6 +102,9 @@ function killSnake() {
       food.x = Math.floor(Math.random() * 15 + 1) * box;
       food.y =  Math.floor(Math.random() * 15 + 1) * box;
       setInterval(startGame, 100);
+    } else {
+      score = 0;
+      snake.length = 0;
     }
   }
 
